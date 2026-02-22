@@ -42,6 +42,31 @@ SELECT
 FROM raw_constructors;
 
 -- ==================================================
+-- ALTER DIMENSION TABLE
+-- =================================================
+
+ALTER TABLE dim_constructor
+ADD COLUMN is_core_team BOOLEAN;
+
+UPDATE dim_constructor
+SET is_core_team = CASE
+    WHEN team_name IN (
+        'Red Bull',
+        'Mercedes',
+        'Ferrari',
+        'McLaren',
+        'Aston Martin',
+        'Alpine F1 Team',
+        'AlphaTauri',
+        'Williams',
+        'Haas',
+        'Alfa Romeo'
+    )
+    THEN TRUE
+    ELSE FALSE
+END;
+
+-- ==================================================
 -- VALIDATION CHECKS (OPTIONAL RUN)
 -- ==================================================
 

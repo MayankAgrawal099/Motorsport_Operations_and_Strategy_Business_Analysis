@@ -68,7 +68,7 @@ SELECT
     -- Performance gain (negative delta = improvement)
     flp.avg_lap_time
       - LAG(flp.avg_lap_time)
-        OVER (PARTITION BY flp.constructor_id ORDER BY dr.race_id)
+        OVER (PARTITION BY flp.constructor_id ORDER BY dr.season, dr.race_id)
         AS lap_time_delta_ms
 
 FROM dim_race dr
